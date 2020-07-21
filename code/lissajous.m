@@ -1,31 +1,45 @@
 %{
-  The lissajous curve is the graph of the system of parametric equations:
+  The lissajous curve is the graph of the system of sinusoidal parametric
+    equations:
     x = A*sin(a*t + delta)
     y = B*sin(b*t),
   which describe complex harmonic motion.
 https://en.wikipedia.org/wiki/Lissajous_curve
 %}
 
-cd /Users/nick/Documents/GitHub/mathart/display
+cd /Users/nick/Documents/GitHub/mathart/code
 
-t = linspace(0,100,10000);
-x = x_function(t);
-y = y_function(t);
+t = linspace(0, 100, 10000);
+a = [3 2 1 1 2];
+b = [2 1 1 2 3];
+delta = [0 pi/2 pi 3*pi/2 2*pi];
+titles = ["0" "pi/2" "pi" "3pi/2" "2pi"];
+titles2 = ["3:2" "2:1" "1:1" "1:2" "2:3"];
 
-p = plot(x,y);
-p.
 
-saveas(gcf,'lissajous.png')
+tiledlayout(5, 5, 'TileSpacing', 'Compact')
 
-function x = x_function(t)
-    A = 1;
-    a = 5;
-    delta = pi/4;
-    x = A*sin(a*t + delta);
+for i = 1:length(a) %rows
+    for j = 1:length(delta) %columns
+        
+        temp_title = strcat(titles2(i), " ", titles(j));
+        x = sin(a(i)*t + delta(j));
+        y = sin(b(i)*t);
+        
+        nexttile
+        plot(x,y)
+        %title(temp_title)
+        set(gca,'xticklabel',[])
+        set(gca,'yticklabel',[])
+        if(j == 1) % write ratio to left of first column
+            ylh = ylabel(titles2(i),'fontweight','normal','fontsize',12);
+            set(ylh,'Rotation',0, 'VerticalAlignment','middle', 'HorizontalAlignment','right')
+        end
+        if(i == 1) % write delta above the first row
+            title(titles(j),'fontweight','normal','fontsize',12);
+        end
+    end
 end
 
-function y = y_function(t)
-    B = 1;
-    b = 4;
-    y = B*sin(b*t);
-end
+saveas(gcf,'../display/lissajous.png')
+
