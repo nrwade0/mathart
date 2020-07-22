@@ -17,3 +17,5 @@ colormap(map)
 imagesc(M_prime)
 %title('Ulam Spiral')
 axis off
+
+saveas(gcf,'../display/ulam.png')
