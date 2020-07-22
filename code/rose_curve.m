@@ -39,7 +39,7 @@ for i = 1:length(n) %rows
 end
 
 set(gcf, 'Position',  [100, 100, 1200, 800])
-saveas(gcf,'../display/lissajous.png')
+saveas(gcf,'../display/rose_curve.png')
 
 
 
