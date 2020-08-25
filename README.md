@@ -10,3 +10,7 @@
 
 ### Ulam Spiral
 <img align="center" src="display/ulam.png" width="400"/>
+
+
+### Harmonograph
+<img align="center" src="display/harmonograph.png" width="400"/>
